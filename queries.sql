@@ -1,4 +1,7 @@
--- Average First Reply Time and Average First Resolution Time by Month for the Past 12 Months
+## Queries
+
+### Average First Reply Time and Average First Resolution Time by Month for the Past 12 Months
+
 SELECT
     TO_VARCHAR(DATE_TRUNC('month', t.created_at::date), 'mm-yyyy') as month_year,
     AVG(COALESCE(PARSE_JSON(m.reply_time_in_minutes):business::number, 0)) as avg_reply_time,
@@ -12,7 +15,8 @@ WHERE
 GROUP BY 1
 ORDER BY 1;
 
--- Average Satisfaction Score and Total Tickets Solved by Agent by Month for the Last 6 Months
+### Average Satisfaction Score and Total Tickets Solved by Agent by Month for the Last 6 Months
+    
 SELECT
     TO_VARCHAR(DATE_TRUNC('month', t.created_at::date), 'mm-yyyy') as year_month,
     u.name as agent_name,
